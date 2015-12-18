@@ -30,8 +30,7 @@ def doStuff(tempPath, inFile, outDir):
             
             template = open(tempPath)
             
-            for line2 in template:
-                                
+            for line2 in template:                               
                 
                 if line2.startswith("\tSampleData={"):
                     outwriter.write(line2)
@@ -40,20 +39,16 @@ def doStuff(tempPath, inFile, outDir):
                 elif line2.startswith("}"):
                     outwriter.write(line2)
                     sample = False
-                
-                
+                               
                 elif sample == True:
                     splitted = line2.split("\t")
-                    outwriter.write(splitted[0] + "\t" + "1" + "\t" + seqDict[splitted[0]] + "\n")
-                    
+                    outwriter.write(splitted[0] + "\t" + "1" + "\t" + seqDict[splitted[0]] + "\n")                    
                 else:
                     outwriter.write(line2)
             outwriter.close()
             
             clusterCount += 1
-            template.close()        
-         
-        
+            template.close()     
 
  
 if __name__ == "__main__":
