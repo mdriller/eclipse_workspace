@@ -51,7 +51,7 @@ if __name__ == "__main__":
     
     countIndices(indicesIn, indexDICT, outWriter)
     
-    print indexDICT
+    #print indexDICT
     
     
     

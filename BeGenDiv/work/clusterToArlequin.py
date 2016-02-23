@@ -42,7 +42,16 @@ def doStuff(tempPath, inFile, outDir):
                                
                 elif sample == True:
                     splitted = line2.split("\t")
-                    outwriter.write(splitted[0] + "\t" + "1" + "\t" + seqDict[splitted[0]] + "\n")                    
+                    
+                    if args.mode2:
+                        name = splitted[0]
+
+                        #print name1, name2
+                        if seqDict.get(name + "_0", "missing") !=  "missing"  and seqDict.get(name + "_1", "missing") !=  "missing":                    
+                            outwriter.write(name + "\t" + "1" + "\t" + seqDict[name + "_0"] + "\n") 
+                            outwriter.write(seqDict[name + "_1"] + "\n")                   
+                    else:
+                        outwriter.write(splitted[0] + "\t" + "1" + "\t" + seqDict[splitted[0]] + "\n")                    
                 else:
                     outwriter.write(line2)
             outwriter.close()
@@ -60,6 +69,7 @@ if __name__ == "__main__":
     parser.add_argument("template", help="arlequin input file as reference, f.e. you can use the one for the 1. cluster as an example so the code knows the structure of the header, the names of the samples etc.", type=str)
     parser.add_argument("lociIn", help="input file for example: '5_samples.loci", type=str)
     parser.add_argument("outDir", help="directory where fasta files will be created", type=str)
+    parser.add_argument("--mode2", help="enable to use mode where each sample has two sequences", action="store_true")
     args = parser.parse_args()
     
     
