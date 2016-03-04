@@ -21,7 +21,6 @@ def getNUMTinfo(infostream, NUMTdict, names):
             splitted = line.split("\t")
             sId = splitted[0]
             
-
             start = int(splitted[3])-1
             end = int(splitted[4])-1
 

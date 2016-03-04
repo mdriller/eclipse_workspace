@@ -6,6 +6,7 @@ Created on 08.12.2014
 
 import sys
 from Bio import SeqIO
+from Bio.SeqIO.QualityIO import phred_quality_from_solexa
 
 #def readfastAfile(inStream):
  #   for line in inStream:
@@ -85,33 +86,5 @@ stream1 = open("/home/maxdriller/Schreibtisch/Praktikum/Azza/S15mapping/S15toEqu
 print checkPaired(stream1)
 '''
 
-instream = open("/home/maxdriller/Schreibtisch/Praktikum/hoffmann_sloth_mitogenome/smallmitoMakerTest/Tthymallus-150bp-300sd50-interleaved.fastq", "r")
-
-outstr1 = open("/home/maxdriller/Schreibtisch/Praktikum/hoffmann_sloth_mitogenome/smallmitoMakerTest/out_R1.fastq", "w")
-
-outstr2 = open("/home/maxdriller/Schreibtisch/Praktikum/hoffmann_sloth_mitogenome/smallmitoMakerTest/out_R2.fastq", "w")
-
-count = 0
-curoutstr = 0
-
-for line in instream:
-    if line.startswith("@Tthymallus"):
-        print line.split("/")[1].strip("\n")
-        if line.split("/")[1].strip("\n") == '1':
-            outstr1.write(line)
-            count = 3
-            curoutstr = 1
-        else:
-            outstr2.write(line)
-            count = 3
-            curoutstr = 2            
-    else:
-        if count > 0:
-            if curoutstr == 1:
-                outstr1.write(line)
-                count -= 1
-            else:
-                outstr2.write(line)
-                count -= 1
-
- 
+    
+    
